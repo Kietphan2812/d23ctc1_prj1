@@ -42,4 +42,16 @@ public class QLSinhVien:SinhVien
         }
     }
 
+    public void ThemSinhVien()
+    {
+        Console.WriteLine("Nhap ma sinh vien: ");
+        int masv=Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Nhap ten sinh vien: ");
+        string tensv=Console.ReadLine();
+        Console.WriteLine("Nhap diem trung binh: ");
+        double gpa=Convert.ToDouble(Console.ReadLine());
+        QLSinhVien sv=new QLSinhVien(masv,tensv,gpa);
+        Them(sv);
+    }
+
 }
