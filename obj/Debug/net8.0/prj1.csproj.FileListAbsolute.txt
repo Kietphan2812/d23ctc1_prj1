@@ -1,0 +1,14 @@
+c:\Users\laptop\D23CTC1\prj1\bin\Debug\net8.0\prj1.exe
+C:\Users\laptop\D23CTC1\prj1\bin\Debug\net8.0\prj1.deps.json
+C:\Users\laptop\D23CTC1\prj1\bin\Debug\net8.0\prj1.runtimeconfig.json
+c:\Users\laptop\D23CTC1\prj1\bin\Debug\net8.0\prj1.dll
+c:\Users\laptop\D23CTC1\prj1\bin\Debug\net8.0\prj1.pdb
+c:\Users\laptop\D23CTC1\prj1\obj\Debug\net8.0\prj1.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\laptop\D23CTC1\prj1\obj\Debug\net8.0\prj1.AssemblyInfoInputs.cache
+c:\Users\laptop\D23CTC1\prj1\obj\Debug\net8.0\prj1.AssemblyInfo.cs
+c:\Users\laptop\D23CTC1\prj1\obj\Debug\net8.0\prj1.csproj.CoreCompileInputs.cache
+c:\Users\laptop\D23CTC1\prj1\obj\Debug\net8.0\prj1.dll
+c:\Users\laptop\D23CTC1\prj1\obj\Debug\net8.0\refint\prj1.dll
+c:\Users\laptop\D23CTC1\prj1\obj\Debug\net8.0\prj1.pdb
+C:\Users\laptop\D23CTC1\prj1\obj\Debug\net8.0\prj1.genruntimeconfig.cache
+C:\Users\laptop\D23CTC1\prj1\obj\Debug\net8.0\ref\prj1.dll
