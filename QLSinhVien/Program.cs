@@ -2,6 +2,7 @@
 public interface SinhVien
 {
     void Them(QLSinhVien sv);
+    void TimKiem(int ma);
 
 }
 public class QLSinhVien:SinhVien
@@ -20,6 +21,18 @@ public class QLSinhVien:SinhVien
     public void Them(QLSinhVien sv)
     {
        qLSinhViens1.Add(sv);
+    }
+    public void TimKiem(int ma)
+    {
+        var sinhviens= qLSinhViens1.Find(u=>u.MaSV==ma);
+        if(sinhviens ==null)
+        {
+            throw new KeyNotFoundException($"Mã sinh viên {ma} không tìm thấy");
+        }
+        if(sinhviens!=null)
+        {
+            Console.WriteLine("Bạn đã tìm kiếm sinh viên thành công");
+        }
     }
     public void InSinhVien()
     {
