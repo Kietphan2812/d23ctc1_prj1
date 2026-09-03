@@ -25,7 +25,7 @@ namespace prj1.Service
                 student.DisplayStudentInfo();
             }
         }
-        public Student GetStudentById(int id)
+        public Student? GetStudentById(int id)
         {
             return students.FirstOrDefault(s => s.Id == id);
         }
