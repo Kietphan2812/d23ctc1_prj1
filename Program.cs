@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using prj1.Model;
-using prj1.Services;
-namespace prj1.Services
-{
+using prj1.Service;
+
 class Program
 {
     static void Main(string[] args)
@@ -25,15 +24,13 @@ class Program
         // 2. Thêm dữ liệu (Đưa luôn Alice và Bob vào danh sách quản lý)
         manager.AddStudent(student1);
         manager.AddStudent(student2);
-        // Thêm sinh viên mới nếu muốn
         manager.AddStudent(new Student(3, "Nguyen Van A", 20));
 
         // 3. Hiển thị toàn bộ danh sách sinh viên đang quản lý
         Console.WriteLine("\n--- Danh sách sinh viên hiện tại trong Manager ---");
-        foreach (var student in manager.GetAllStudents())
-        {
-            student.DisplayStudentInfo();
-        }
+        // ĐÃ SỬA: Gọi thẳng hàm tự in danh sách của bạn, không dùng vòng lặp foreach ở đây nữa
+        manager.DisplayAllStudents(); 
+
 
         // 4. Tìm kiếm thử nghiệm sinh viên theo ID
         Console.WriteLine("\n--- Tìm kiếm sinh viên ID = 1 ---");
@@ -42,17 +39,12 @@ class Program
         {
             foundStudent.DisplayStudentInfo();
         }
-
-        // 5. Xóa thử nghiệm sinh viên ra khỏi danh sách theo ID
-        Console.WriteLine("\n--- Xóa sinh viên ID = 2 (Bob) ---");
-        manager.DeleteStudent(2);
-
-        // 6. Kiểm tra lại danh sách sau khi xóa để xác nhận
-        Console.WriteLine("\n--- Danh sách sinh viên sau khi xóa ID 2 ---");
-        foreach (var student in manager.GetAllStudents())
+        else
         {
-            student.DisplayStudentInfo();
+            Console.WriteLine("[Hệ thống] Không tìm thấy sinh viên có ID = 1.");
         }
+
+        // Lưu ý: Lớp StudentManager của bạn hiện tại CHƯA định nghĩa hàm DeleteStudent (Xóa).
+        // Nếu bạn muốn chạy tính năng xóa ở mục 5 và mục 6, bạn cần bổ sung hàm DeleteStudent vào file StudentManager.cs nhé!
     }
-}
 }
