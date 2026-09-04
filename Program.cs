@@ -118,7 +118,7 @@ class Program
 
         // 4. Đăng nhập thành công với mật khẩu đúng
         Console.WriteLine("\n[Test 4] Đăng nhập thành công với tài khoản hợp lệ:");
-        authService.Login("admin", "admin123");
+        authService.Login("admin", "admin1234");
 
         Console.WriteLine("\n========================================================");
         Console.WriteLine("--- HOÀN TẤT TẤT CẢ CÁC BÀI KIỂM THỬ ---");
