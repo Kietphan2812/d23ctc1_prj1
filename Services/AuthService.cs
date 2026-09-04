@@ -18,8 +18,8 @@ namespace prj1.Services
             // Khởi tạo một số tài khoản mẫu
             _users = new List<User>
             {
-                new User("admin", "admin123", "Quản trị viên"),
-                new User("teacher", "gv2026", "Giảng viên"),
+                new User("admin", "admin1234", "Quản trị viên"),
+                new User("teacher", "gv1234", "Giảng viên"),
                 new User("student", "sv1234", "Sinh viên")
             };
         }
