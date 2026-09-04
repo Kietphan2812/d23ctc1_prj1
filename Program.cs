@@ -1,6 +1,6 @@
 using System;
 using prj1.Model;
-using prj1.Service;
+using prj1.Services;
 
 class Program
 {
