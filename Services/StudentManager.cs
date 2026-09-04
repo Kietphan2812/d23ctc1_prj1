@@ -15,23 +15,51 @@ namespace prj1.Services
             _students = new List<Student>();
         }
 
-        // 1. Thêm sinh viên mới (Có kiểm tra trùng ID và dữ liệu null)
-        public void AddStudent(Student student)
+        // 1. Thêm sinh viên mới (Có kiểm tra dữ liệu đầu vào và kiểm tra trùng ID)
+        public bool AddStudent(Student student)
         {
             if (student == null)
             {
-                Console.WriteLine("[Hệ thống] Dữ liệu sinh viên không hợp lệ.");
-                return;
+                Console.WriteLine("[Hệ thống] Dữ liệu sinh viên không hợp lệ (null).");
+                return false;
+            }
+
+            if (!Student.Validate(student.Id, student.Name, student.Age, out string errorMsg))
+            {
+                Console.WriteLine($"[Hệ thống] Lỗi dữ liệu đầu vào: {errorMsg}");
+                return false;
             }
 
             if (_students.Any(s => s.Id == student.Id))
             {
                 Console.WriteLine($"[Hệ thống] ID {student.Id} đã tồn tại trong hệ thống.");
-                return;
+                return false;
             }
 
             _students.Add(student);
             Console.WriteLine($"[Hệ thống] Đã thêm thành công sinh viên: {student.Name}");
+            return true;
+        }
+
+        // 1b. Nạp chồng thêm sinh viên trực tiếp từ các trường dữ liệu (tiện lợi khi nhận input từ người dùng)
+        public bool AddStudent(int id, string name, int age)
+        {
+            if (!Student.Validate(id, name, age, out string errorMsg))
+            {
+                Console.WriteLine($"[Hệ thống] Lỗi dữ liệu đầu vào: {errorMsg}");
+                return false;
+            }
+
+            if (_students.Any(s => s.Id == id))
+            {
+                Console.WriteLine($"[Hệ thống] ID {id} đã tồn tại trong hệ thống.");
+                return false;
+            }
+
+            var student = new Student(id, name, age);
+            _students.Add(student);
+            Console.WriteLine($"[Hệ thống] Đã thêm thành công sinh viên: {student.Name}");
+            return true;
         }
 
         // 2. Lấy danh sách tất cả sinh viên
@@ -59,17 +87,29 @@ namespace prj1.Services
         // 4. Tìm kiếm sinh viên theo Mã số (Id)
         public Student? GetStudentById(int id)
         {
+            if (id <= 0)
+            {
+                Console.WriteLine($"[Hệ thống] Mã ID {id} không hợp lệ (phải lớn hơn 0).");
+                return null;
+            }
+
             return _students.FirstOrDefault(s => s.Id == id);
         }
 
         // 5. Xóa sinh viên theo Mã số (Id)
         public bool DeleteStudent(int id)
         {
-            var student = GetStudentById(id);
+            if (id <= 0)
+            {
+                Console.WriteLine($"[Hệ thống] Mã ID {id} không hợp lệ để xóa (phải là số nguyên dương lớn hơn 0).");
+                return false;
+            }
+
+            var student = _students.FirstOrDefault(s => s.Id == id);
             if (student != null)
             {
                 _students.Remove(student);
-                Console.WriteLine($"[Hệ thống] Đã xóa sinh viên có ID: {id}");
+                Console.WriteLine($"[Hệ thống] Đã xóa sinh viên có ID: {id} ({student.Name}) thành công.");
                 return true;
             }
 

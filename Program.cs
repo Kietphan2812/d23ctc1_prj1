@@ -44,7 +44,83 @@ class Program
             Console.WriteLine("[Hệ thống] Không tìm thấy sinh viên có ID = 1.");
         }
 
-        // Lưu ý: Lớp StudentManager của bạn hiện tại CHƯA định nghĩa hàm DeleteStudent (Xóa).
-        // Nếu bạn muốn chạy tính năng xóa ở mục 5 và mục 6, bạn cần bổ sung hàm DeleteStudent vào file StudentManager.cs nhé!
+
+        // --- PHẦN 3: KIỂM THỬ CHỨC NĂNG XÓA SINH VIÊN (Issue #10) ---
+        Console.WriteLine("\n========================================================");
+        Console.WriteLine("--- PHẦN 3: KIỂM THỬ CHỨC NĂNG XÓA SINH VIÊN (Issue #10) ---");
+        
+        // 5. Xóa sinh viên tồn tại theo ID
+        Console.WriteLine("\n[Test 1] Xóa sinh viên có ID = 2 (Bob):");
+        manager.DeleteStudent(2);
+
+        // 6. Hiển thị lại danh sách sau khi xóa để xác nhận
+        Console.WriteLine("\n[Danh sách] Danh sách sinh viên sau khi xóa ID = 2:");
+        manager.DisplayAllStudents();
+
+        // 7. Thử xóa sinh viên với ID không tồn tại
+        Console.WriteLine("\n[Test 2] Thử xóa sinh viên không tồn tại (ID = 999):");
+        manager.DeleteStudent(999);
+
+        // 8. Thử xóa sinh viên với ID không hợp lệ (<= 0)
+        Console.WriteLine("\n[Test 3] Thử xóa sinh viên với ID không hợp lệ (ID = -5):");
+        manager.DeleteStudent(-5);
+
+
+        // --- PHẦN 4: KIỂM THỬ KIỂM TRA DỮ LIỆU ĐẦU VÀO (Issue #5 / #4) ---
+        Console.WriteLine("\n========================================================");
+        Console.WriteLine("--- PHẦN 4: KIỂM THỬ KIỂM TRA DỮ LIỆU ĐẦU VÀO (Issue #5) ---");
+
+        // 1. Thử thêm sinh viên trùng ID
+        Console.WriteLine("\n[Test 1] Thêm sinh viên trùng ID (ID = 1 đã có Alice):");
+        manager.AddStudent(1, "Nguyen Trung ID", 20);
+
+        // 2. Thử thêm sinh viên với ID âm
+        Console.WriteLine("\n[Test 2] Thêm sinh viên với ID âm (ID = -1):");
+        manager.AddStudent(-1, "Tran Van Sai", 21);
+
+        // 3. Thử thêm sinh viên với tên để trống
+        Console.WriteLine("\n[Test 3] Thêm sinh viên với tên rỗng:");
+        manager.AddStudent(4, "   ", 20);
+
+        // 4. Thử thêm sinh viên với tuổi không hợp lệ (< 16 hoặc > 100)
+        Console.WriteLine("\n[Test 4] Thêm sinh viên với tuổi không hợp lệ (Tuổi = 10):");
+        manager.AddStudent(5, "Le Thi Be", 10);
+
+        // 5. Thử bắt ngoại lệ khi tạo trực tiếp Student với dữ liệu sai
+        Console.WriteLine("\n[Test 5] Bắt ngoại lệ Constructor Student khi khởi tạo sai dữ liệu:");
+        try
+        {
+            Student invalidStudent = new Student(0, "", 150);
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine($"[Bắt ngoại lệ thành công] {ex.Message}");
+        }
+
+
+        // --- PHẦN 5: KIỂM THỬ ĐĂNG NHẬP & XỬ LÝ LỖI MẬT KHẨU VƯỢT GIỚI HẠN KÝ TỰ (Issue #7) ---
+        Console.WriteLine("\n========================================================");
+        Console.WriteLine("--- PHẦN 5: KIỂM THỬ ĐĂNG NHẬP & GIỚI HẠN MẬT KHẨU (Issue #7) ---");
+        AuthService authService = new AuthService();
+
+        // 1. Đăng nhập với mật khẩu vượt quá 32 ký tự (Trực tiếp kiểm tra lỗi Issue #7)
+        Console.WriteLine("\n[Test 1] Đăng nhập với mật khẩu vượt quá giới hạn (chuỗi 40 ký tự):");
+        string longPassword = new string('A', 40);
+        authService.Login("admin", longPassword);
+
+        // 2. Đăng nhập với mật khẩu quá ngắn (< 6 ký tự)
+        Console.WriteLine("\n[Test 2] Đăng nhập với mật khẩu quá ngắn (123):");
+        authService.Login("admin", "123");
+
+        // 3. Đăng nhập với mật khẩu sai
+        Console.WriteLine("\n[Test 3] Đăng nhập sai mật khẩu:");
+        authService.Login("admin", "wrongpass");
+
+        // 4. Đăng nhập thành công với mật khẩu đúng
+        Console.WriteLine("\n[Test 4] Đăng nhập thành công với tài khoản hợp lệ:");
+        authService.Login("admin", "admin123");
+
+        Console.WriteLine("\n========================================================");
+        Console.WriteLine("--- HOÀN TẤT TẤT CẢ CÁC BÀI KIỂM THỬ ---");
     }
 }
